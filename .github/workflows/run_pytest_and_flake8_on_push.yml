@@ -16,6 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::123456789100:role/run_pytest_and_flake8_on_push-role
+        aws-region: us-east-1
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
