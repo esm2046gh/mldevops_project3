@@ -2,12 +2,21 @@ aiobotocore==1.4.1
 aiohttp==3.8.1
 aiohttp-retry==2.4.6
 aioitertools==0.8.0
+<<<<<<< HEAD
 aiosignal==1.2.0
 anyio==3.4.0
 appdirs==1.4.4
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
 asgiref==3.4.1
+=======
+
+anyio @ file:///home/conda/feedstock_root/build_artifacts/anyio_1641898027206/work/dist
+appdirs @ file:///home/conda/feedstock_root/build_artifacts/appdirs_1603108395799/work
+argon2-cffi @ file:///home/conda/feedstock_root/build_artifacts/argon2-cffi_1640817743617/work
+argon2-cffi-bindings @ file:///home/conda/feedstock_root/build_artifacts/argon2-cffi-bindings_1640855148858/work
+asgiref @ file:///home/conda/feedstock_root/build_artifacts/asgiref_1625395912402/work
+>>>>>>> 814c939a52133d423cfa920910bf30b357d93557
 async-generator==1.10
 async-timeout==4.0.2
 asyncssh==2.8.1
