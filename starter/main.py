@@ -74,6 +74,6 @@ async def predict(input_data: ModelInput):
 
 # if __name__ == "__main__":
 #     import uvicorn
-#     #uvicorn main:app --reload
 #     #uvicorn.run("main:app", host="0.0.0.0", port=80, reload=True)
 #     uvicorn.run("main:app", reload=True)
+# CLI: $ uvicorn starter.main:app --reload
