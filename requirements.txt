@@ -1,9 +1,5 @@
 aiobotocore==2.1.0
-<<<<<<< HEAD
-=======
-aiohttp @ file:///home/conda/feedstock_root/build_artifacts/aiohttp_1637087019853/work
->>>>>>> b45d79a564bf14ec2c0647ecf4330912e990f6d5
-aiohttp-retry @ file:///home/conda/feedstock_root/build_artifacts/aiohttp-retry_1632292602851/work
+
 aioitertools==0.8.0
 aiosignal @ file:///home/conda/feedstock_root/build_artifacts/aiosignal_1636093929600/work
 anyio @ file:///home/conda/feedstock_root/build_artifacts/anyio_1641898027206/work/dist
