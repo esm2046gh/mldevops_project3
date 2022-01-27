@@ -37,7 +37,7 @@ jobs:
     - name: Pull data from DVC
       run: |
         dvc remote add -d s3-bucket  s3://esmbucket/mldevops_project3/
-        dvc pull
+        dvc pull -f
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
