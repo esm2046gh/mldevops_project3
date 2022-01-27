@@ -1,0 +1,5 @@
+outs:
+- md5: 74a6cf49b1be65933a6c4392806a481e.dir
+  size: 2457979
+  nfiles: 8
+  path: dtc
