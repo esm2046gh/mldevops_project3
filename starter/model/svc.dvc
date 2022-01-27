@@ -1,0 +1,5 @@
+outs:
+- md5: 9143132816330af73dd5b126c08e4762.dir
+  size: 10233333
+  nfiles: 8
+  path: svc
