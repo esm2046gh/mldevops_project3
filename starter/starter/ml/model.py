@@ -2,12 +2,12 @@ import numpy as np
 from sklearn.metrics import fbeta_score, precision_score, recall_score, f1_score, accuracy_score
 from sklearn.model_selection import GridSearchCV
 from dataclasses import dataclass
-from ml.data import process_data
+from data import process_data
 
 @dataclass
 class Metrics:
     '''
-    - A class containing the model metric
+    - A class containing the model metrics
 
     Attributes:
     ----------
@@ -15,12 +15,9 @@ class Metrics:
     - precision (number): precision-score
     - recall (number): recall-score
     - f1 (number): f1-score
-
-    Methods:
-    -------
+    - accuracy (number): accuracy_score
     '''
 
-    # pylint: disable=too-many-instance-attributes
     fbeta = np.nan
     precision = np.nan
     recall = np.nan
@@ -31,19 +28,18 @@ class Metrics:
 def train_model(X_train, y_train, model, model_param_grid, cv=5):
     """
     Trains a machine learning model and returns it.
+    It performs hyperparameter tuning using GridSearchCV
 
     Inputs
     ------
-    X_train : np.array
-        Training data.
-    y_train : np.array
-        Labels.
-    model :
-    model_param_grid:
+    - X_train (np.array): Input Training data.
+    - y_train (np.array): Target training data (output labels).
+    - model : sklearn model for classification
+    - model_param_grid (dict): model params grid to tune
+    - cv (int): Cross validation parameter. default = 5
     Returns
     -------
-    model
-        Trained machine learning model.
+    - model (GridSearchCV.best_estimator_): Trained machine learning model.
     """
     print(f"train_model: {type(model).__name__}, cv: {cv}")
     print(f"params_grid: {model_param_grid}")
@@ -56,21 +52,20 @@ def train_model(X_train, y_train, model, model_param_grid, cv=5):
 
 def compute_model_metrics(y, preds):
     """
-    Validates the trained machine learning model using precision, recall, and F1.
+    Validates the trained machine learning model using  fbeta, precision, recall, f1 and accuracy.
 
     Inputs
     ------
-    y : np.array
-        Known labels, binarized.
-    preds : np.array
-        Predicted labels, binarized.
+    - y (np.array): Known labels, binarized.
+    - preds(np.array): Predicted labels, binarized.
+
     Returns
     -------
-    Metrics object (see above)
-    metrics.precision : float
-    metrics.recall : float
-    metrics.fbeta : float
-    metrics.f1: float
+    - A Metrics object (see class Metrics)
+    metrics.precision (float). See sklearn.metrics
+    metrics.recall (float).
+    metrics.fbeta (float).
+    metrics.f1 (float).
     """
     metrics = Metrics()
     metrics.fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
@@ -79,7 +74,7 @@ def compute_model_metrics(y, preds):
     metrics.f1 = f1_score(y, preds, zero_division=1)
     metrics.accuracy = accuracy_score(y, preds)
 
-    return metrics #precision, recall, fbeta, f1
+    return metrics
 
 
 def inference(model, X):
@@ -88,14 +83,11 @@ def inference(model, X):
 
     Inputs
     ------
-    model : ???
-        Trained machine learning model.
-    X : np.array
-        Data used for prediction.
+    - model (sklearn model for classification): Trained machine learning model.
+    - X (np.array): Data used for prediction.
     Returns
     -------
-    preds : np.array
-        Predictions from the model.
+    - preds (np.array): Predictions from the model.
     """
     preds = model.predict(X)
 
@@ -108,12 +100,17 @@ def model_performance(model, data, cat_features, output_feature, encoder, lb, sc
 
     Inputs
     ------
-    model : ???
-        Trained machine learning model.
+   - model (sklearn model for classification): Trained machine learning model
+   - data (dataframe): Data for assessment
+   - cat_features (list): list of categorical features
+   - output_feature (str): The output label
+   - encoder (OneHotEncoder-object): Encoder for categorical features
+   - lb: label binarizer. See process_data in data.py
+   - scaler (MinMaxscaler-object): scaler for continous data
 
     Returns
     -------
-
+    print(...)
     """
     X_data, y_data, encoder, lb, scaler = process_data(
         data, categorical_features=cat_features, label=output_feature, training=False, encoder=encoder, lb=lb, scaler=scaler)
@@ -127,17 +124,22 @@ def model_performance(model, data, cat_features, output_feature, encoder, lb, sc
 
 def model_performance_on_slices(model, data, cat_features, output_feature, encoder, lb, scaler):
     """
-        Calculates the models performance on the slices of categorical columns.
+    Calculates the models performance on the slices of categorical columns.
 
-        Inputs
-        ------
-        model : ???
-            Trained machine learning model.
+    Inputs
+    ------
+   - model (sklearn model for classification): Trained machine learning model
+   - data (dataframe): Data for assessment
+   - cat_features (list): list of categorical features
+   - output_feature (str): The output label
+   - encoder (OneHotEncoder-object): Encoder for categorical features
+   - lb: label binarizer. See process_data in data.py
+   - scaler (MinMaxscaler-object): scaler for continous data
 
-        Returns
-        -------
-
-        """
+    Returns
+    -------
+    print(...)
+    """
     for cat_feat in cat_features:
         for feat_class in data[cat_feat].unique():
             data_temp = data[data[cat_feat] == feat_class]

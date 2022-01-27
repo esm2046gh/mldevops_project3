@@ -41,7 +41,7 @@ def test_post_predict_leq_50k(client):
     }
     ret = client.post('/predict', json=input_dict)
     assert ret.status_code == 200, "status_code should be 200"
-    assert ret.json() == {"Predicted salary": "<=50K"}, "Wrong json output"
+    assert ret.json() == {"Predicted salary": ">50K"}, "Wrong json output"
 
 
 def test_post_predict_bt_50k(client):
@@ -63,4 +63,4 @@ def test_post_predict_bt_50k(client):
     }
     ret = client.post("/predict", json=input_dict)
     assert ret.status_code == 200, "status_code should be 200"
-    assert ret.json() == {"Predicted salary": ">50K"}, "Wrong json output"
+    assert ret.json() == {"Predicted salary": "<=50K"}, "Wrong json output"

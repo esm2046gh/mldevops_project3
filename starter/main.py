@@ -46,12 +46,12 @@ async def create_item(item: dict):
 async def on_startup():
     current_wdir = os.getcwd()
     dump = Dump('joblib')
-    trained_model['model'] = dump.load(f"{current_wdir}/starter/model/model.pkl")
-    trained_model['encoder'] = dump.load(f"{current_wdir}/starter/model/encoder.pkl")
-    trained_model['lb'] = dump.load(f"{current_wdir}/starter/model/lb.pkl")
-    trained_model['output_feature'] = dump.load(f"{current_wdir}/starter/model/output_feature.pkl")
-    trained_model['scaler'] = dump.load(f"{current_wdir}/starter/model/scaler.pkl")
-    trained_model['cat_features'] = dump.load(f"{current_wdir}/starter/model/cat_features.pkl")
+    trained_model['model'] = dump.load(f"{current_wdir}/model/model.pkl")
+    trained_model['encoder'] = dump.load(f"{current_wdir}/model/encoder.pkl")
+    trained_model['lb'] = dump.load(f"{current_wdir}/model/lb.pkl")
+    trained_model['output_feature'] = dump.load(f"{current_wdir}/model/output_feature.pkl")
+    trained_model['scaler'] = dump.load(f"{current_wdir}/model/scaler.pkl")
+    trained_model['cat_features'] = dump.load(f"{current_wdir}/model/cat_features.pkl")
 
 @app.post('/predict')
 async def predict(input_data: ModelInput):
