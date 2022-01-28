@@ -32,7 +32,7 @@ class Dump:
         """
         save(obj, filename): Saves the object 'obj' on path 'filename'
         """
-        file_path = path.relpath(rel_file_path)
+        file_path = rel_file_path #path.relpath(rel_file_path)
         print(f"The PATH: {file_path}")
         func = getattr(self.dumper, 'dump')
         with open(file_path, 'wb') as a_file:
@@ -46,7 +46,7 @@ class Dump:
         """
         obj = load(filename): Returns  and object from path 'filename'
         """
-        file_path = path.relpath(rel_file_path)
+        file_path = rel_file_path #path.relpath(rel_file_path)
         print(f"The PATH: {file_path}")
         func = getattr(self.dumper, 'load')
         with open(file_path, 'rb') as a_file:
