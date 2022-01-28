@@ -36,8 +36,8 @@ jobs:
       uses: iterative/setup-dvc@v1
     - name: Pull data from DVC c
       run: |
-        dvc remote add -d s3-bucket  s3://esmbucket/
-        dvc pull -f
+        dvc remote add -d s3-bucket  s3://esmbucket
+        dvc pull
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
