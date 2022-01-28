@@ -1,4 +1,5 @@
 import numpy as np
+from os import path
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 from sklearn.preprocessing import MinMaxScaler
 
@@ -27,29 +28,31 @@ class Dump:
             raise err
 
     #@ee_log("Dump.save")
-    def save(self, obj, filename):
+    def save(self, obj, rel_file_path):
         """
         save(obj, filename): Saves the object 'obj' on path 'filename'
         """
+        file_path = path.relpath(rel_file_path)
+        print(f"The PATH: {file_path}")
         func = getattr(self.dumper, 'dump')
-        with open(filename, 'wb') as a_file:
+        with open(file_path, 'wb') as a_file:
             if self.dumper_str == 'pickle':
                 func(obj, a_file, self.dumper.HIGHEST_PROTOCOL)
             else:
                 func(obj, a_file)
 
     #@ee_log("Dump.load")
-    def load(self, filename):
+    def load(self, rel_file_path):
         """
         obj = load(filename): Returns  and object from path 'filename'
         """
+        file_path = path.relpath(rel_file_path)
+        print(f"The PATH: {file_path}")
         func = getattr(self.dumper, 'load')
-        with open(filename, 'rb') as a_file:
+        with open(file_path, 'rb') as a_file:
             obj = func(a_file)
             a_file.close()
         return obj
-
-
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None, scaler=None
