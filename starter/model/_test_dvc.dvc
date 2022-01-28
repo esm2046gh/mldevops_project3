@@ -1,5 +1,5 @@
 outs:
-- md5: 94df028d9ce22c9eb2ee7e2baa330cac.dir
-  size: 2494060
+- md5: 3b9127dc61bc625e1e245a138e4180e4.dir
+  size: 4389102
   nfiles: 9
   path: _test_dvc
