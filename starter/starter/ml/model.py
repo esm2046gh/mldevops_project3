@@ -3,6 +3,15 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV
 from dataclasses import dataclass
 from data import process_data
+import logging
+
+THE_LOG_FILE = 'slice_output.txt'
+logging.basicConfig(
+    filename=THE_LOG_FILE,
+    level=logging.INFO,
+    filemode='w',
+    datefmt='%Y.%m.%dT%H:%M:%S',
+    format='%(asctime)s | %(name)s | %(funcName)s | %(lineno)s | %(levelname)s | %(message)s')
 
 @dataclass
 class Metrics:
@@ -119,8 +128,10 @@ def model_performance(model, data, cat_features, output_feature, encoder, lb, sc
 
     res = compute_model_metrics(y_data, preds)
 
-    print(f"Overall Performance. fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}")
+    #print(f"Overall Performance. fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}")
+    str_out = f"Overall Performance. fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}"
 
+    logging.info(" %s", str_out)
 
 def model_performance_on_slices(model, data, cat_features, output_feature, encoder, lb, scaler):
     """
@@ -151,8 +162,8 @@ def model_performance_on_slices(model, data, cat_features, output_feature, encod
 
             res = compute_model_metrics(y_data, preds)
 
-            print(f"Slice Performance. cat_feat: {cat_feat} | feat_class: {feat_class}| fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}")
-
-
+            #print(f"Slice Performance. cat_feat: {cat_feat} | feat_class: {feat_class}| fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}")
+            str_out = f"Slice Performance. cat_feat: {cat_feat} | feat_class: {feat_class}| fbeta: {res.fbeta:.4f}| precision: {res.precision:.4f}| recall: {res.recall:.4f}| accuracy: {res.accuracy:.4f}"
+            logging.info(" %s", str_out)
 
 
