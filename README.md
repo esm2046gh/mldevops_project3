@@ -1,18 +1,30 @@
 # Udacity MLOps Project 3. Deploying a Machine Learning Model on Heruko with FastApi
 - Author: E. Saavedra, January 2022
 
-## Github Link
+## Project Links
 
-https://github.com/esm2046gh/mldevops_project3.git
+- **GitHub:** https://github.com/esm2046gh/mldevops_project3.git
+- **REST-Api:** https://esm-predict-salary-app.herokuapp.com/docs
 
-## Environment Set up
+## Overview 
+
+In this project, we develop a classification model based on the publicly available Census Bureau data. Unit tests are created to monitor the model performance on various slices of the data. Afterwards the model is deployed  using the FastAPI package. Both the slice-validation and the API tests are incorporated into a CI/CD framework using GitHub Actions.
+
+Key-elements in this project are Census-Data, GitHub, DVC, S3-Amazon, Heroku, GitHub-Actions 
+
+Please read the projects model-card (starter/model_card.md) regarding model performance, limitations, etc 
+
+## Implementation 
+The different steps carried out during the project implementation/deployment are described in this section
+
+### Environment Set up
 * Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
 * Download and install conda if you don’t have it already.
     * Use the supplied requirements file to create a new environment, or
     * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
     * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
 
-## Repositories
+### Repositories
 * Create a directory for the project and initialize git and dvc.
     * As you work on the code, continually commit changes. Generated models you want to keep must be committed to dvc.
 * Connect your local git repo to GitHub.
@@ -20,20 +32,20 @@ https://github.com/esm2046gh/mldevops_project3.git
     * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
 * Set up a remote repository for dvc.
 
-# Data
+### Data
 * Download census.csv and commit it to dvc.
 * This data is messy, try to open it in pandas and see what you get.
 * To clean it, use your favorite text editor to remove all spaces.
 * Commit this modified data to dvc (we often want to keep the raw data untouched but then can keep updating the cooked version).
 
-# Model
+### Model
 * Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
 * Write unit tests for at least 3 functions in the model code.
 * Write a function that outputs the performance of the model on slices of the data.
     * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
 * Write a model card using the provided template.
 
-# API Creation
+### API Creation
 *  Create a RESTful API using FastAPI this must implement:
     * GET on the root giving a welcome message.
     * POST that does model inference.
@@ -42,7 +54,7 @@ https://github.com/esm2046gh/mldevops_project3.git
    	 * Hint: the data has names with hyphens and Python does not allow those as variable names. Do not modify the column names in the csv and instead use the functionality of FastAPI/Pydantic/etc to deal with this.
 * Write 3 unit tests to test the API (one for the GET and two for POST, one that tests each prediction).
 
-# API Deployment
+### API Deployment
 * Create a free Heroku account (for the next steps you can either use the web GUI or download the Heroku CLI).
 * Create a new app and have it deployed from your GitHub repository.
     * Enable automatic deployments that only deploy if your continuous integration passes.
