@@ -1,0 +1,5 @@
+outs:
+- md5: 234a301d4e7d519ce6e90217fd12752e
+  size: 21
+  path: output_feature.pkl
+  isexec: true

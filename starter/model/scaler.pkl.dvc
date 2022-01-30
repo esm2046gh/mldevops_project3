@@ -1,0 +1,5 @@
+outs:
+- md5: 5e16494baf53ab80e974c752f2ae14cf
+  size: 1197
+  path: scaler.pkl
+  isexec: true

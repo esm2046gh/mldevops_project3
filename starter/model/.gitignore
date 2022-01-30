@@ -1,1 +1,9 @@
 /_test_dvc
+/scaler.pkl
+/lb.pkl
+/encoder.pkl
+/output_feature.pkl
+/cat_features.pkl
+/test.pkl
+/train.pkl
+/model.pkl

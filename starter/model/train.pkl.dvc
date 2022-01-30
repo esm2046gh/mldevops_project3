@@ -1,0 +1,5 @@
+outs:
+- md5: 7c0d00a0c098d5949604fa2a170a1404
+  size: 1931123
+  path: train.pkl
+  isexec: true

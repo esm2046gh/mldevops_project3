@@ -1,0 +1,5 @@
+outs:
+- md5: 77f2abc723b4b67109f07d944e3a402a
+  size: 485141
+  path: test.pkl
+  isexec: true

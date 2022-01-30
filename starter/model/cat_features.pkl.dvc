@@ -1,0 +1,5 @@
+outs:
+- md5: e689d49bf9221eff0a75269d3243f96f
+  size: 115
+  path: cat_features.pkl
+  isexec: true
